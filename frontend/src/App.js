@@ -17,7 +17,7 @@ function App() {
 					<div className="collapse navbar-collapse">
 						<ul className="navbar-nav mr-auto">
 							<li className="navbar-item">
-								<Link to="/listing" className="nav-link">List</Link>
+								<Link to="/listing" className="nav-link">Dataset List</Link>
 							</li>
 							<li className="navbar-item">
 								<Link to="/details/dataset-slug" className="nav-link">Details</Link>
