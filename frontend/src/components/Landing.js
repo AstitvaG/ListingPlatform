@@ -1,71 +1,42 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-
-export default class CreateUser extends Component {
+import './css/Landing.css'
+export default class LandingPage extends Component {
     
     constructor(props) {
         super(props);
 
-        this.state = {
-            username: '',
-            email: ''
-        }
-
-        this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
     }
     
-    onChangeUsername(event) {
-        this.setState({ username: event.target.value });
-    }
+    state = {
 
-    onChangeEmail(event) {
-        this.setState({ email: event.target.value });
-    }
-
-    onSubmit(e) {
-        e.preventDefault();
-
-        const newUser = {
-            username: this.state.username,
-            email: this.state.email
-        }
-
-        axios.post('http://localhost:4000/add', newUser)
-             .then(res => console.log(res.data));
-
-        this.setState({
-            username: '',
-            email: ''
-        });
     }
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Username: </label>
-                        <input type="text" 
-                               className="form-control" 
-                               value={this.state.username}
-                               onChange={this.onChangeUsername}
-                               />
-                    </div>
-                    <div className="form-group">
-                        <label>Email: </label>
-                        <input type="text" 
-                               className="form-control" 
-                               value={this.state.email}
-                               onChange={this.onChangeEmail}
-                               />  
-                    </div>
-                    <div className="form-group">
-                        <input type="submit" value="Create User" className="btn btn-primary"/>
-                    </div>
-                </form>
-            </div>
-        )
+
+        <div align = 'center'>
+        <div class="card-group" style={{'width': '30rem'}}>
+  <div class="card mr-5">
+    <img class="card-img-top" src={require('./img/dataset.png')} alt="Card image cap"/>
+    <div class="card-body">
+      <h5 class="card-title">Datasets</h5>
+      <p class="card-text">A curated list of some interesting datasets.
+  </p>
+    <a href="#" class="btn btn-secondary" style={{'border-radius':'20px'}}>Explore datasets</a>
+    </div>
+  </div>
+  <div class="card ml-5">
+    <img class="card-img-top" src={require('./img/dataset.png')} alt="Card image cap"/>
+    <div class="card-body">
+      <h5 class="card-title">ML challenges</h5>
+      <p class="card-text">A curated list of some interesting ML challenges. </p>
+    <a href="#" class="btn btn-secondary" style={{'border-radius':'20px'}}>Explore ML challenges</a>
+    </div>
+  </div>
+</div>
+</div>
+
+      )
     }
 }
