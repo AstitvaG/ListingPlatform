@@ -1,0 +1,67 @@
+import React, { Component } from 'react';
+import axios from 'axios';
+
+export default class UsersList extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    state = {
+        dataset_slug: this.props.match.params.id,
+        loading: false,
+        data: {
+            name: 'Temp Dataset',
+            slug: 'temp-dataset',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna erat, dictum et condimentum ac, pharetra ac justo. Nunc molestie non risus eu cursus. Praesent egestas eros id interdum faucibus. In ullamcorper, neque et ultrices semper, nisi metus laoreet orci, aliquet efficitur lacus orci quis purus. Proin vehicula lectus quis faucibus aliquam. Suspendisse potenti. Praesent condimentum odio et urna ornare, sed gravida lacus congue. Aliquam accumsan mattis sem nec malesuada. Curabitur blandit neque vel dapibus tempor. Vestibulum in fringilla elit, at pulvinar est. Morbi tempus rutrum tellus cursus rutrum. Maecenas et magna ut felis gravida tincidunt nec eu enim. Suspendisse ut dui tellus.\n\nIn lacinia eleifend ipsum non efficitur. Aliquam efficitur nulla in justo ultricies, vitae sagittis enim tristique. Donec ullamcorper mauris nec mauris pharetra, in tincidunt nunc aliquet. Duis laoreet dui in dolor pellentesque viverra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam eu iaculis odio. Suspendisse potenti. Nulla luctus tempor mi vehicula sagittis. Nulla nulla est, elementum ac convallis id, porttitor ut libero. Duis tincidunt lobortis arcu et dapibus. Curabitur auctor finibus est, sed facilisis nunc rhoncus quis. Cras pulvinar varius posuere. Maecenas porta tempus tristique.\n\nNulla vehicula erat eu quam tristique, eget aliquam diam auctor. Fusce eu pulvinar quam. Suspendisse ac lobortis nisi. Fusce sagittis orci libero, at mollis augue elementum quis. Nam vitae mauris id ante venenatis dictum vel et mauris. Curabitur sed nisl vitae sapien imperdiet pulvinar sed in turpis. Pellentesque eget interdum turpis. Nunc non rhoncus diam. Morbi consequat porta ante sit amet commodo. Pellentesque vel elit ultrices, consectetur nisi sed, molestie massa. Pellentesque efficitur egestas sollicitudin. Vivamus magna lacus, tempus in fringilla id, sollicitudin viverra sapien. Cras nec nibh magna.\n\nCurabitur in ligula condimentum lacus vestibulum eleifend non id nisi. Fusce blandit lectus id neque vulputate, ut viverra risus suscipit. Quisque pretium non sem et dignissim. Nullam vitae tincidunt metus. Integer euismod lobortis arcu. Vivamus iaculis est eget faucibus aliquam. Nunc convallis tellus nec felis porttitor, sit amet volutpat tellus tristique. Maecenas eros magna, mollis sit amet congue tempus, mollis in neque.',
+            subscribed: false,
+            subscription_expiry: 0,
+            upload_date: 'March 10th, 2022',
+            uploaded_by: 'Temp Person',
+            download_size: '100MB',
+            data_type: 'JSON/CSV',
+            use_cases: ['Temp Usecase 1', 'Temp Usecase 2', 'Temp Usecase 3'],
+            citations: ['Temp paper 1, Temp person 1', 'Temp paper 2, Temp person 2', 'Temp paper 3, Temp person 3']
+        }
+    }
+
+    componentDidMount() {
+
+        // TODO
+        // axios.get(`${backend_url}/get_details/${this.state.dataset_slug}`).then(res => {
+        //     this.setState({
+        //         data: res.data,
+        //         loading: false
+        //     });
+        // })
+    }
+
+    render() {
+        let { data } = this.state;
+        return (
+            <div className='mx-5'>
+                <div id="title-row" className='d-flex justify-content-between row'>
+                    <div id="dataset-name">
+                        <h1>{data.name}</h1>
+                    </div>
+                    <div className='row'>
+                        <div id="subsciption-button" className='mx-2'>
+                            <button>{data.subscribed ? "Subscibed" : "Subscibe"}</button>
+                        </div>
+                        <div id="download-button" className='mx-2'>
+                            <button>Download Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div id='main-content' className='d-flex row'>
+                    <div style={{flex: 1, background: 'blue', height: '100px'}}>
+
+                    </div>
+                    <div style={{flex: 1, background: 'green', height: '100px'}}>
+
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
