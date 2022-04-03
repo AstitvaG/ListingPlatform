@@ -29,13 +29,7 @@ export default class UsersList extends Component {
 
     componentDidMount() {
 
-        // TODO
-        // axios.get(`${backend_url}/get_details/${this.state.dataset_slug}`).then(res => {
-        //     this.setState({
-        //         data: res.data,
-        //         loading: false
-        //     });
-        // })
+       
     }
 
     changeTab = (newTab) => {
