@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './css/Details.css'
+import Description from './Tabs/Description';
+import Metadata from './Tabs/Metadata';
+import Versions from './Tabs/Versions';
+import Visualization from './Tabs/Visualization';
 
 export default class UsersList extends Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     state = {
         dataset_slug: this.props.match.params.id,
@@ -21,19 +22,18 @@ export default class UsersList extends Component {
             download_size: '100MB',
             data_type: 'JSON/CSV',
             use_cases: ['Temp Usecase 1', 'Temp Usecase 2', 'Temp Usecase 3'],
-            citations: ['Temp paper 1, Temp person 1', 'Temp paper 2, Temp person 2', 'Temp paper 3, Temp person 3']
-        }
+            citations: [['Temp paper 1', 'Temp person 1'], ['Temp paper 2', 'Temp person 2'], ['Temp paper 3', 'Temp person 3']]
+        },
+        activeTab: 0
     }
 
     componentDidMount() {
 
-        // TODO
-        // axios.get(`${backend_url}/get_details/${this.state.dataset_slug}`).then(res => {
-        //     this.setState({
-        //         data: res.data,
-        //         loading: false
-        //     });
-        // })
+       
+    }
+
+    changeTab = (newTab) => {
+        this.setState({ activeTab: newTab })
     }
 
     render() {
@@ -53,12 +53,43 @@ export default class UsersList extends Component {
                         </div>
                     </div>
                 </div>
-                <div id='main-content' className='d-flex row'>
-                    <div style={{flex: 1, background: 'blue', height: '100px'}}>
-
+                <div className='d-flex row'>
+                    <div style={{ flex: 2 }}>
+                        <div id='details-tabs' className='row'>
+                            <button onClick={() => this.changeTab(0)} className={`details-tab ${this.state.activeTab === 0 ? 'active' : ''}`}>Desciption</button>
+                            <button onClick={() => this.changeTab(1)} className={`details-tab ${this.state.activeTab === 1 ? 'active' : ''}`}>Metadata</button>
+                            <button onClick={() => this.changeTab(2)} className={`details-tab ${this.state.activeTab === 2 ? 'active' : ''}`}>Versions</button>
+                            <button onClick={() => this.changeTab(3)} className={`details-tab ${this.state.activeTab === 3 ? 'active' : ''}`}>Visualizations</button>
+                        </div>
+                        {
+                            {
+                                0: <Description data={data} />,
+                                1: <Metadata />,
+                                2: <Versions />,
+                                3: <Visualization />
+                            }[this.state.activeTab]
+                        }
                     </div>
-                    <div style={{flex: 1, background: 'green', height: '100px'}}>
-
+                    <div style={{ flex: 1 }}>
+                        <div className="m-5 p-4" style={{ backgroundColor: '#dddddd', borderRadius: '20px' }}>
+                            <div style={{ fontSize: '30px' }}>Properties</div>
+                            <div className='side-props-dt'>
+                                <div>Upload Date</div>
+                                <div>{data.upload_date}</div>
+                            </div>
+                            <div className='side-props-dt'>
+                                <div>Upload By</div>
+                                <div>{data.uploaded_by}</div>
+                            </div>
+                            <div className='side-props-dt'>
+                                <div>Download Size</div>
+                                <div>{data.download_size}</div>
+                            </div>
+                            <div className='side-props-dt'>
+                                <div>Data Type</div>
+                                <div>{data.data_type}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

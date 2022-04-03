@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import Auth from './components/Auth'
-import Dashboard from './components/Dashboard'
+import Listing from './components/Listing'
 import Landing from './components/Landing'
 import Details from './components/Details'
 
@@ -17,7 +17,7 @@ function App() {
 					<div className="collapse navbar-collapse">
 						<ul className="navbar-nav mr-auto">
 							<li className="navbar-item">
-								<Link to="/dashboard" className="nav-link">Dashboard</Link>
+								<Link to="/listing" className="nav-link">Dataset List</Link>
 							</li>
 							<li className="navbar-item">
 								<Link to="/details/dataset-slug" className="nav-link">Details</Link>
@@ -33,7 +33,7 @@ function App() {
 				<Switch>
 					<Route path="/" exact component={Landing} />
 					<Route path="/auth" exact component={Auth} />
-					<Route path="/dashboard" component={Dashboard} />
+					<Route path="/listing" component={Listing} />
 					<Route path="/details/:id" component={Details} />
 				</Switch>
 			</div>

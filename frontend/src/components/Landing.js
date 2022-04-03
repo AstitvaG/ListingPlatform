@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import './css/Landing.css'
+import {Link} from 'react-router-dom'
 export default class LandingPage extends Component {
     
     constructor(props) {
@@ -23,7 +24,7 @@ export default class LandingPage extends Component {
       <h5 class="card-title">Datasets</h5>
       <p class="card-text">A curated list of some interesting datasets.
   </p>
-    <a href="#" class="btn btn-secondary" style={{'border-radius':'20px'}}>Explore datasets</a>
+    <Link to="/listing" class="btn btn-secondary" style={{'border-radius':'20px'}}>Explore datasets</Link>
     </div>
   </div>
   <div class="card ml-5">
