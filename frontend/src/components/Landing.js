@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-export default class CreateUser extends Component {
+export default class Landing extends Component {
     
     constructor(props) {
         super(props);
@@ -65,6 +65,8 @@ export default class CreateUser extends Component {
                         <input type="submit" value="Create User" className="btn btn-primary"/>
                     </div>
                 </form>
+
+              
             </div>
         )
     }
