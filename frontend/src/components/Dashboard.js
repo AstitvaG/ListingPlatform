@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import './css/Landing.css'
+import './css/Dashboard.css'
 import {Link} from 'react-router-dom'
-export default class LandingPage extends Component {
+export default class ProfilePage extends Component {
     
   constructor(props) {
     super(props);
