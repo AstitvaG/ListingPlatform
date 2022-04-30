@@ -8,86 +8,105 @@ export default class Listings extends Component {
     super(props);
 
     this.state = {
-      datasets: {
+      datasets: Object.entries({
         id: {
           id: "",
           name: "",
           description: "",
           tags: [],
-          versions: "", 
+          versions: "",
           uploadBy: "",
           uploadDate: "", //DDMMYYYY
           dataType: "", //csv,json
         },
-      },
+      }),
+      displayDataset: Object.entries({
+        id: {
+          id: "",
+          name: "",
+          description: "",
+          tags: [],
+          versions: "",
+          uploadBy: "",
+          uploadDate: "", //DDMMYYYY
+          dataType: "", //csv,json
+        },
+      }),
     };
   }
 
   componentDidMount() {
-    this.setState({
-      datasets: {
-        "1": {
-          id: "1",
-          name: "DATASET1",
-          description:
-            'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
-          tags: ["Medical"],
-          versions: "", 
-          uploadBy: "",
-          uploadDate: "02032009", //DDMMYYYY
-          dataType: "csv", //csv,json
-        },
-        "2": {
-          id: "2",
-          name: "DATASET2",
-          description:
-            'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
-          tags: ["Non-Medical"],
-          versions: "", 
-          uploadBy: "",
-          uploadDate: "22032009", //DDMMYYYY
-          dataType: "json", //csv,json
-        },
-        "3": {
-          id: "3",
-          name: "DATASET3",
-          description:
-            'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
-          tags: ["Non-Medical"],
-          versions: "", 
-          uploadBy: "",
-          uploadDate: "22102019", //DDMMYYYY
-          dataType: "json", //csv,json
-        },
-        "4": {
-          id: "4",
-          name: "DATASET4",
-          description:
-            'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
-          tags: ["Medical"],
-          versions: "", 
-          uploadBy: "",
-          uploadDate: "04102022", //DDMMYYYY
-          dataType: "json", //csv,json
-        },
+    let datasets = {
+      1: {
+        id: "1",
+        name: "DATASET1",
+        description:
+          'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
+        tags: ["Medical"],
+        versions: "",
+        uploadBy: "",
+        uploadDate: "02032009", //DDMMYYYY
+        dataType: "csv", //csv,json
       },
-    });
+      2: {
+        id: "2",
+        name: "DATASET2",
+        description:
+          'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
+        tags: ["Non-Medical"],
+        versions: "",
+        uploadBy: "",
+        uploadDate: "22032009", //DDMMYYYY
+        dataType: "json", //csv,json
+      },
+      3: {
+        id: "3",
+        name: "DATASET3",
+        description:
+          'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
+        tags: ["Non-Medical"],
+        versions: "",
+        uploadBy: "",
+        uploadDate: "22102019", //DDMMYYYY
+        dataType: "json", //csv,json
+      },
+      4: {
+        id: "4",
+        name: "DATASET4",
+        description:
+          'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
+        tags: ["Medical"],
+        versions: "",
+        uploadBy: "",
+        uploadDate: "04102022", //DDMMYYYY
+        dataType: "json", //csv,json
+      },
+    };
     // TODO
     // axios.get(`${backend_url}/get_details/${this.state.dataset_slug}`).then(res => {
     //     this.setState({
-    //         data: res.data,
+    //         displayDataset: res.data,
+    //         datasets: res.data,
     //         loading: false
     //     });
     // })
+    this.setState({
+      displayDataset: Object.entries(datasets),
+      datasets: Object.entries(datasets),
+    });
   }
 
   onUpload(e) {
     //send request to upload team.
   }
 
-  filterByTags(e,tagName) {
-    e.preventDefault();
-
+  filterByTags(tagName) {
+    console.log(tagName);
+    const newItem = this.state.datasets.filter((newVal) => {
+      return newVal[1].tags.includes(tagName);
+      // comparing category for displaying data
+    });
+    this.setState({ displayDataset: newItem });
   }
 
   render() {
@@ -95,33 +114,38 @@ export default class Listings extends Component {
       <div>
         <div className="d-flex justify-content-around row">
           <div>
-          <div
+            <div
               className="flex justify-content-around row"
               style={{
                 backgroundColor: "#dddddd",
                 borderRadius: "20px",
                 width: "18rem",
-                height: "10rem"
+                height: "10rem",
               }}
             >
-            <div style={{ fontSize: "30px", textAlign: "center", padding:'1rem' }}>
+              <div
+                style={{
+                  fontSize: "30px",
+                  textAlign: "center",
+                  padding: "1rem",
+                }}
+              >
                 Contribute
               </div>
 
-            <div className="side-props-dt">
-              <button
+              <div className="side-props-dt">
+                <button
                   className="btn btn-secondary"
                   type="button"
-                    onClick={(e) => this.onUpload()}
+                  onClick={() => this.onUpload()}
                 >
                   Upload new Dataset
                 </button>
               </div>
-
             </div>
 
-            <br/>
-            <br/>
+            <br />
+            <br />
 
             <div
               className="flex justify-content-around row"
@@ -129,35 +153,76 @@ export default class Listings extends Component {
                 backgroundColor: "#dddddd",
                 borderRadius: "20px",
                 width: "18rem",
-                height: '20rem'
+                height: "20rem",
               }}
             >
-              <div style={{ fontSize: "30px", textAlign: "center", padding:'2rem' }}>
+              <div
+                style={{
+                  fontSize: "30px",
+                  textAlign: "center",
+                  padding: "2rem",
+                }}
+              >
                 Exlpore More
               </div>
-             
-              <DropdownButton variant="secondary" menuVariant="dark" title="Filter by Tags" style={{borderRadius:'20px'}}>
-                <Dropdown.Item onClick={(e) => this.filterByTags("Medical")}>Action</Dropdown.Item>
-                <Dropdown.Item onClick={(e) => this.filterByTags("Non-Medical")}>Another action</Dropdown.Item>
-                <Dropdown.Item onClick={(e) => this.filterByTags("etc")}>Something else</Dropdown.Item>
+
+              <DropdownButton
+                variant="secondary"
+                menuVariant="dark"
+                title="Filter by Tags"
+                style={{ borderRadius: "20px" }}
+              >
+                <Dropdown.Item onClick={() => this.filterByTags("Medical")}>
+                  Medical
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => this.filterByTags("Non-Medical")}>
+                  Non-Medical
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => this.filterByTags("etc")}>
+                  Something else
+                </Dropdown.Item>
               </DropdownButton>
 
-              <DropdownButton variant="secondary" menuVariant="dark" title="Sort By Upload Date" style={{borderRadius:'20px'}}>
-                <Dropdown.Item onClick={(e) => this.sortUploadDate("Increasing")}>Newer To Older</Dropdown.Item>
-                <Dropdown.Item onClick={(e) => this.sortUploadDate("Decreasing")}>Older To Newer</Dropdown.Item>
+              <DropdownButton
+                variant="secondary"
+                menuVariant="dark"
+                title="Sort By Upload Date"
+                style={{ borderRadius: "20px" }}
+              >
+                <Dropdown.Item
+                  onClick={() => this.sortUploadDate("Increasing")}
+                >
+                  Newer To Older
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => this.sortUploadDate("Decreasing")}
+                >
+                  Older To Newer
+                </Dropdown.Item>
               </DropdownButton>
 
-              <DropdownButton variant="secondary" menuVariant="dark" title="Sort By Download Size" style={{borderRadius:'20px'}}>
-                <Dropdown.Item onClick={(e) => this.sortDownloadSize("Increasing")}>Increasing</Dropdown.Item>
-                <Dropdown.Item onClick={(e) => this.sortDownloadSize("Decreasing")}>Decreasing</Dropdown.Item>
+              <DropdownButton
+                variant="secondary"
+                menuVariant="dark"
+                title="Sort By Download Size"
+                style={{ borderRadius: "20px" }}
+              >
+                <Dropdown.Item
+                  onClick={() => this.sortDownloadSize("Increasing")}
+                >
+                  Increasing
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => this.sortDownloadSize("Decreasing")}
+                >
+                  Decreasing
+                </Dropdown.Item>
               </DropdownButton>
-
-             
             </div>
           </div>
 
           <div>
-            {Object.entries(this.state.datasets).map((datasetId, i) => {
+            {this.state.displayDataset.map((datasetId, i) => {
               return (
                 <div style={{ padding: "1rem" }}>
                   <div
