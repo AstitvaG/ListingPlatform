@@ -1,0 +1,22 @@
+{
+    "admin@admin.com": {
+        "password": "admin",
+        "admin": true,
+        "userid": 0
+    },
+    "gupta.astitva@gmail.com": {
+        "password": "pass1",
+        "admin": false,
+        "userid": 1
+    },
+    "trushasakharkar@gmail.com": {
+        "password": "pass2",
+        "admin": false,
+        "userid": 2
+    },
+    "siddharthjain@gmail.com": {
+        "password": "pass3",
+        "admin": false,
+        "userid": 3
+    }
+}

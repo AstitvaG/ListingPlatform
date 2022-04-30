@@ -7,6 +7,9 @@ import Listing from './components/Listing'
 import Landing from './components/Landing'
 import Details from './components/Details'
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
 	return (
@@ -37,6 +40,17 @@ function App() {
 					<Route path="/details/:id" component={Details} />
 				</Switch>
 			</div>
+			<ToastContainer
+				position="bottom-center"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+			/>
 		</Router>
 	);
 }
