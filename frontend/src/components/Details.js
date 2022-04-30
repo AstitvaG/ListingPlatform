@@ -10,7 +10,7 @@ export default class UsersList extends Component {
 
     state = {
         dataset_slug: this.props.match.params.id,
-        loading: false,
+        loading: true,
         data: {
             name: 'Temp Dataset',
             slug: 'temp-dataset',
@@ -28,8 +28,14 @@ export default class UsersList extends Component {
     }
 
     componentDidMount() {
-
-       
+        let prevAuthDetails = sessionStorage.getItem("userdata_listing")
+        if (prevAuthDetails === null) {
+            window.history.pushState({}, '', `/auth`)
+            window.location.reload()
+        }
+        else {
+            this.setState({ loading: false })
+        }
     }
 
     changeTab = (newTab) => {
@@ -38,6 +44,34 @@ export default class UsersList extends Component {
 
     render() {
         let { data } = this.state;
+        if (this.state.loading) {
+            return <div style={{ width: '100%', height: '100%', position: 'absolute', zIndex: 100, alignItems: 'center', justifyContent: 'center', alignContent: 'center', display: 'flex', background: 'rgba(0,0,0,0.1)' }}>
+                <div class="spinner-grow m-1 text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow m-1 text-secondary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow m-1 text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow m-1 text-danger" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow m-1 text-warning" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow m-1 text-info" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow m-1 text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow m-1 text-dark" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        }
         return (
             <div className='mx-5'>
                 <div id="title-row" className='d-flex justify-content-between row'>
