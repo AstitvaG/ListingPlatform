@@ -1,13 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import './css/Dashboard.css'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 export default class ProfilePage extends Component {
-    
+
   constructor(props) {
     super(props);
 
     this.state = {
+      loading: true,
       datasets: {
         "1": {
           id: "1",
@@ -20,7 +21,7 @@ export default class ProfilePage extends Component {
           uploadDate: "20191201", //yyyymmdd
           dataType: "csv", //csv,json,
           downloadSize: "1",//in GB
-  
+
         },
         "2": {
           id: "2",
@@ -33,7 +34,7 @@ export default class ProfilePage extends Component {
           uploadDate: "20031209",  //YYYYmmdd
           dataType: "json", //csv,json,
           downloadSize: "20",//in GB
-  
+
         },
         "3": {
           id: "3",
@@ -46,7 +47,7 @@ export default class ProfilePage extends Component {
           uploadDate: "20190122", //YYYYmmdd
           dataType: "json", //csv,json,
           downloadSize: "55",//in GB
-  
+
         },
         "4": {
           id: "4",
@@ -59,7 +60,7 @@ export default class ProfilePage extends Component {
           uploadDate: "20191112", //yyyymmdd
           dataType: "json", //csv,json,
           downloadSize: "0",//in GB
-  
+
         },
         "5": {
           id: "5",
@@ -72,14 +73,14 @@ export default class ProfilePage extends Component {
           uploadDate: "20221112", //yyyymmdd
           dataType: "json", //csv,json,
           downloadSize: "10",//in GB
-  
+
         },
       },
       uploads: [
-      "1","2",
+        "1", "2",
       ],
       subscriptions: {
-        
+
         "1":
         {
           id: "1",
@@ -114,19 +115,57 @@ export default class ProfilePage extends Component {
       },
     };
   }
+  componentDidMount = () => {
+    let prevAuthDetails = sessionStorage.getItem("userdata_listing")
+    if (prevAuthDetails === null) {
+      window.history.pushState({}, '', `/auth`)
+      window.location.reload()
+    }
+    else {
+      this.setState({ loading: false })
+    }
+  }
 
-   render() {
+  render() {
+    if (this.state.loading) {
+      return <div style={{ width: '100%', height: '100%', position: 'absolute', zIndex: 100, alignItems: 'center', justifyContent: 'center', alignContent: 'center', display: 'flex', background: 'rgba(0,0,0,0.1)' }}>
+        <div class="spinner-grow m-1 text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow m-1 text-secondary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow m-1 text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow m-1 text-danger" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow m-1 text-warning" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow m-1 text-info" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow m-1 text-light" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow m-1 text-dark" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    }
     return (
       <div>
         <div className="d-flex justify-content-around row">
           <div>
-          <div className="d-flex justify-content-around h3 row">
-          My Uploads
-          </div>
+            <div className="d-flex justify-content-around h3 row">
+              My Uploads
+            </div>
             {this.state.uploads.map((datasetId, i) => {
               return (
                 <div style={{ padding: "1rem" }}>
-                  {console.log("ghvfhd",datasetId)}
+                  {console.log("ghvfhd", datasetId)}
                   <div
                     className="card"
                     style={{ flex: 1, width: "30rem", borderRadius: "20px" }}
@@ -161,6 +200,9 @@ export default class ProfilePage extends Component {
                     </div>
                     <div className="card-body">
                       <p className="card-text">{this.state.datasets[datasetId].description}</p>
+                      <hr />
+                      <p> Uploaded on:  {this.state.datasets[datasetId].uploadDate}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -172,10 +214,10 @@ export default class ProfilePage extends Component {
 
           <div>
             <div className="d-flex justify-content-around h3 row">
-            My Subscriptions
+              My Subscriptions
             </div>
             {Object.entries(this.state.subscriptions).map((datasetId, i) => {
-            // {this.state.subscriptions.map((datasetId, i) => {
+              // {this.state.subscriptions.map((datasetId, i) => {
               return (
                 <div style={{ padding: "1rem" }}>
                   <div
@@ -212,21 +254,21 @@ export default class ProfilePage extends Component {
                     </div>
                     <div className="card-body">
                       <p className="card-text">{this.state.datasets[datasetId[1].id].description}</p>
-                      <hr/>
-                            {
-                              datasetId[1].id != undefined 
-                              &&
-                              datasetId[1].startDate === "" 
-                              &&
-                              <p className="card-text">Subscription Pending!</p>
-                            }
-                            {
-                              datasetId[1].id != undefined 
-                              &&
-                              datasetId[1].startDate != ""
-                              &&
-                      <p className="card-text">Subscription ends on: {datasetId[1].endDate}</p>
-                            }
+                      <hr />
+                      {
+                        datasetId[1].id != undefined
+                        &&
+                        datasetId[1].startDate === ""
+                        &&
+                        <p className="card-text">Subscription Pending!</p>
+                      }
+                      {
+                        datasetId[1].id != undefined
+                        &&
+                        datasetId[1].startDate != ""
+                        &&
+                        <p className="card-text">Subscription ends on: {datasetId[1].endDate}</p>
+                      }
                     </div>
                   </div>
                 </div>

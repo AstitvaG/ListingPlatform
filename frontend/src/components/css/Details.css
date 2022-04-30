@@ -39,5 +39,10 @@
 
 .btnx {
     text-decoration: none  !important;
+    font-size: 20px;
+}
 
+.btnx.download:hover {
+    background-color: blue !important;
+    color: white !important;
 }
