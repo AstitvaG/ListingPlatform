@@ -29,7 +29,7 @@ yarn build
 ```
 
 
-## File/Direction Structure
+## File/Directory Structure
 ```txt
 ./ListingPlatform
 ├── backend
@@ -38,14 +38,7 @@ yarn build
 ├── frontend
 │   ├── config-overrides.js
 │   ├── package.json
-│   ├── package-lock.json
 │   ├── public
-│   │   ├── favicon.ico
-│   │   ├── index.html
-│   │   ├── logo192.png
-│   │   ├── logo512.png
-│   │   ├── manifest.json
-│   │   └── robots.txt
 │   ├── README.md
 │   ├── src
 │   │   ├── App.css
@@ -73,7 +66,6 @@ yarn build
 │   │   ├── index.css
 │   │   ├── index.js
 │   │   └── serviceWorker.js
-│   ├── yarn-error.log
 │   └── yarn.lock
 ├── Requirements.txt
 └── README.md
