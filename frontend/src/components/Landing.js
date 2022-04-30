@@ -8,7 +8,7 @@ export default class LandingPage extends Component {
 
     this.state = {
       subscriptions: {
-        key: {
+        id : {
 		  id: "",
           startDate: "",
           endDate: "",
@@ -46,7 +46,10 @@ export default class LandingPage extends Component {
           approvalStatus: "Pending",
         },
       },
-    });
+    }, () => {
+
+		sessionStorage.setItem("subscriptionData", JSON.stringify(this.state.subscriptions));
+	});
 	 // TODO
     // axios.get(`${backend_url}/get_subscription_data/${this.state.dataset_slug}`).then(res => {
     //     this.setState({
@@ -54,7 +57,6 @@ export default class LandingPage extends Component {
     //         loading: false
     //     });
     // })
-	sessionStorage.setItem("subscriptionData", this.state.subscriptions);
   }
 
 	state = {

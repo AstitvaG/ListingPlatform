@@ -39,12 +39,13 @@ export default class Listings extends Component {
   }
 
   componentDidMount() {
-    let prevAuthDetails = sessionStorage.getItem("userdata_listing")
-    if (prevAuthDetails === null) {
-      window.history.pushState({}, '', `/auth`)
-      window.location.reload()
-    }
-    else {
+    // let prevAuthDetails = sessionStorage.getItem("userdata_listing")
+    // if (prevAuthDetails === null) {
+    //   window.history.pushState({}, '', `/auth`)
+    //   window.location.reload()
+    // }
+    // else
+     {
       this.setState({ loading: false })
     }
     let datasets = {
@@ -98,6 +99,19 @@ export default class Listings extends Component {
         uploadDate: "20191112", //yyyymmdd
         dataType: "json", //csv,json,
         downloadSize: "0",//in GB
+
+      },
+      5: {
+        id: "5",
+        name: "DATASET5",
+        description:
+          'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
+        tags: [],
+        versions: "",
+        uploadBy: "",
+        uploadDate: "20221112", //yyyymmdd
+        dataType: "json", //csv,json,
+        downloadSize: "10",//in GB
 
       },
     };
@@ -326,7 +340,7 @@ export default class Listings extends Component {
                         </h5>
                         <div className="d-flex flex-row-reverse">
                           <Link
-                            to={`/details/${datasetId[1].name}`}
+                            to={`/details/${datasetId[1].id}`}
                             className="btn btn-secondary"
                             style={{
                               borderRadius: "20px",
