@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 
 export default class Listings extends Component {
   constructor(props) {
@@ -12,6 +13,11 @@ export default class Listings extends Component {
           id: "",
           name: "",
           description: "",
+          tags: {},
+          version: "", 
+          uploadBy: "",
+          uploadDate: "", //DDMMYYYY
+          dataType: "", //csv,json
         },
       ],
     };
@@ -48,6 +54,11 @@ export default class Listings extends Component {
     //send request to upload team.
   }
 
+  filterByTags(e,tagName) {
+    e.preventDefault();
+
+  }
+
   render() {
     return (
       <div>
@@ -59,53 +70,36 @@ export default class Listings extends Component {
                 backgroundColor: "#dddddd",
                 borderRadius: "20px",
                 width: "18rem",
-                height: '14rem'
+                height: '20rem'
               }}
             >
               <div style={{ fontSize: "30px", textAlign: "center", padding:'2rem' }}>
                 Exlpore More
               </div>
-              <div className="side-props-dt">
-              <div className="dropdown">
-                <button
-                  className="btn btn-secondary dropdown-toggle"
-                  type="button"
-                  id="dropdownMenuButton"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  style={{borderRadius:'20px'}}
-                >
-                  Filter Datasets
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                </div>
-               
-                </div>
-              </div>
+             
+              <DropdownButton variant="secondary" menuVariant="dark" title="Filter by Tags" style={{borderRadius:'20px'}}>
+                <Dropdown.Item onClick={(e) => this.filterByTags("Medical")}>Action</Dropdown.Item>
+                <Dropdown.Item onClick={(e) => this.filterByTags("Non-Medical")}>Another action</Dropdown.Item>
+                <Dropdown.Item onClick={(e) => this.filterByTags("etc")}>Something else</Dropdown.Item>
+              </DropdownButton>
+
+              <DropdownButton variant="secondary" menuVariant="dark" title="Sort By Upload Date" style={{borderRadius:'20px'}}>
+                <Dropdown.Item onClick={(e) => this.sortUploadDate("Increasing")}>Newer To Older</Dropdown.Item>
+                <Dropdown.Item onClick={(e) => this.sortUploadDate("Decreasing")}>Older To Newer</Dropdown.Item>
+              </DropdownButton>
+
+              <DropdownButton variant="secondary" menuVariant="dark" title="Sort By Download Size" style={{borderRadius:'20px'}}>
+                <Dropdown.Item onClick={(e) => this.sortDownloadSize("Increasing")}>Increasing</Dropdown.Item>
+                <Dropdown.Item onClick={(e) => this.sortDownloadSize("Decreasing")}>Decreasing</Dropdown.Item>
+              </DropdownButton>
+
               <div className="side-props-dt">
               <button
                   className="btn btn-secondary"
                   type="button"
-                 
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  style={{borderRadius:'20px'}}
-                  onClick={(e) => this.onUpload()}
-
+                    onClick={(e) => this.onUpload()}
                 >
                   Upload new Dataset
-
                 </button>
               </div>
             </div>
