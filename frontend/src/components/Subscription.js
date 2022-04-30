@@ -12,7 +12,10 @@ class Subsciption extends Component {
                 position: 'fixed',
                 background: 'rgba(0,0,0,0.2)',
                 zIndex: 100,
-
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                alignContent: "center"
             }}>
                 <div className='p-5' style={{
                     height: '40vh',
@@ -23,11 +26,15 @@ class Subsciption extends Component {
                     top: '20vh',
                     position: 'absolute',
                 }}>
+                    <br/>
+                    <br/>
                     <h2>Subsciption</h2>
-                    <h5>You have alread subscribed to this dataset.</h5>
-                    <span style={{fontSize: '20px'}}>Validity: </span> <span style={{color: '#444444', fontSize: '20px'}}>{data.subscription_expiry}</span>
+                    <h5>Status: {data.approvalStatus ?? "Not subscribed"}</h5>
+                    <h5>Start Date: {data.startDate ?? "Not subscribed"}</h5>
+                    <h5>End Date: {data.endDate ?? "Not subscribed"}</h5>
+                    <br/>
                     <div className='row justify-content-center'>
-                        <button onClick={this.props.toggle}>Close</button>
+                        <button onClick={this.props.toggle} className="details-tab active btnx">Close</button>
                     </div>
                 </div>
             </div >

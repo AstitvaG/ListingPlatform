@@ -124,7 +124,7 @@ export default class UsersList extends Component {
         }
         return (
             <div>
-                {this.state.showSubscriptionModal && <Subsciption data={data} toggle={this.toggleSubsciptionModal} />}
+                {this.state.showSubscriptionModal && <Subsciption data={this.state.subscriptionData[this.state.dataset_slug]} toggle={this.toggleSubsciptionModal} />}
 
                 <div className='mx-5'>
                     <div id="title-row" className='d-flex justify-content-between row'>
@@ -150,7 +150,7 @@ export default class UsersList extends Component {
                                 this.state.subscriptionData[this.state.dataset_slug].approvalStatus === "Approved"
                                 &&
                                 <div id="download-button" className='mx-2'>
-                                    <button type="button" className='details-tab active btnx'>Download Now</button>
+                                    <button type="button" className='details-tab active btnx download'>Download Now</button>
                                 </div>
                             }
                         </div>
