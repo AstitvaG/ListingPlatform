@@ -24,7 +24,7 @@ export default class LandingPage extends Component {
 							<h2 class="card-title"><b>Datasets</b></h2>
 							<p class="card-text">A curated list of some interesting datasets upladed by various people.
 							</p>
-							<Link to="/listing" class="btn btn-success" style={{ 'border-radius': '10px', fontSize: '20px' }}>Explore Datasets</Link>
+							<Link to="/auth" class="btn btn-success" style={{ 'border-radius': '10px', fontSize: '20px' }}>Explore Datasets</Link>
 						</div>
 					</div>
 					<div class="card ml-3 p-5" style={{ borderRadius: '20px', background: '#eeeeee' }}>

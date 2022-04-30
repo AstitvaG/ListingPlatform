@@ -38,11 +38,17 @@ function App() {
 					<Route path="/auth" exact component={Auth} />
 					<Route path="/listing" component={Listing} />
 					<Route path="/details/:id" component={Details} />
+					<Route path="/admin-portal" render={() => {
+						return <div>
+							<h1>Admin Portal</h1>
+							<h3>Managed by other team</h3>
+						</div>
+					}} />
 				</Switch>
 			</div>
 			<ToastContainer
 				position="bottom-center"
-				autoClose={5000}
+				autoClose={2000}
 				hideProgressBar={false}
 				newestOnTop={false}
 				closeOnClick

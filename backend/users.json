@@ -2,21 +2,21 @@
     "admin@admin.com": {
         "password": "admin",
         "admin": true,
-        "userid": 0
+        "name" :"admin"
     },
     "gupta.astitva@gmail.com": {
         "password": "pass1",
         "admin": false,
-        "userid": 1
+        "name" :"Astitva Gupta"
     },
     "trushasakharkar@gmail.com": {
         "password": "pass2",
         "admin": false,
-        "userid": 2
+        "name" :"Trusha Sakharkar"
     },
     "siddharthjain@gmail.com": {
         "password": "pass3",
         "admin": false,
-        "userid": 3
+        "name" :"Siddharth Jain"
     }
 }
