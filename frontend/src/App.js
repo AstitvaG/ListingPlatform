@@ -6,6 +6,7 @@ import Auth from './components/Auth'
 import Listing from './components/Listing'
 import Landing from './components/Landing'
 import Details from './components/Details'
+import Dashboard from './components/Dashboard'
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,6 +21,9 @@ function App() {
 					<div className="collapse navbar-collapse">
 						<ul className="navbar-nav mr-auto">
 							<li className="navbar-item">
+								<Link to="/dashboard" className="nav-link">Dashboard</Link>
+							</li>
+							<li className="navbar-item">
 								<Link to="/listing" className="nav-link">Dataset List</Link>
 							</li>
 							<li className="navbar-item">
@@ -27,6 +31,9 @@ function App() {
 							</li>
 							<li className="navbar-item">
 								<Link to="/auth" className="nav-link">Login/Signup</Link>
+							</li>
+							<li className="navbar-item">
+								<Link to="/auth" className="nav-link">Logout</Link>
 							</li>
 						</ul>
 					</div>
@@ -44,6 +51,7 @@ function App() {
 							<h3>Managed by other team</h3>
 						</div>
 					}} />
+					<Route path="/dashboard" component={Dashboard} />
 				</Switch>
 			</div>
 			<ToastContainer
