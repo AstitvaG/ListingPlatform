@@ -41,6 +41,35 @@ export default class UsersList extends Component {
     changeTab = (newTab) => {
         this.setState({ activeTab: newTab })
     }
+    onDownload(datasetName, datasetVersion, datasetCreatorName, requestingUser, secretToken) {
+        //from team 3
+            let url = "dataversedownloadmanager://opendownloader?";
+            if(datasetName !== null && datasetName !== undefined)
+                url += ("datasetName="+datasetName);
+            url += "&";
+        
+            if(datasetVersion !== null && datasetVersion !== undefined)
+                url += ("datasetVersion="+datasetVersion);
+            url += "&";
+        
+            if(datasetCreatorName !== null && datasetCreatorName !== undefined)
+                url += ("datasetCreatorName="+datasetCreatorName);
+            url += "&";
+        
+            if(requestingUser !== null && requestingUser !== undefined)
+                url += ("requestingUser="+requestingUser);
+            url += "&";
+            
+            if(secretToken !== null && secretToken !== undefined)
+                url += ("secretToken="+secretToken);
+            
+        
+            const a = document.createElement('a');
+            a.href = url;
+            a.click();
+        
+        }
+    }
 
     render() {
         let { data } = this.state;
@@ -83,7 +112,7 @@ export default class UsersList extends Component {
                             <button>{data.subscribed ? "Subscibed" : "Subscibe"}</button>
                         </div>
                         <div id="download-button" className='mx-2'>
-                            <button>Download Now</button>
+                            <button onClick={() => this.onDownload()}>Download Now</button>
                         </div>
                     </div>
                 </div>

@@ -19,6 +19,7 @@ export default class Listings extends Component {
           uploadBy: "",
           uploadDate: "", //DDMMYYYY
           dataType: "", //csv,json
+          downloadSize: "",//in GB
         },
       }),
       displayDataset: Object.entries({
@@ -31,6 +32,7 @@ export default class Listings extends Component {
           uploadBy: "",
           uploadDate: "", //DDMMYYYY
           dataType: "", //csv,json
+          downloadSize: "",//in GB
         },
       }),
     };
@@ -54,8 +56,10 @@ export default class Listings extends Component {
         tags: ["Medical"],
         versions: "",
         uploadBy: "",
-        uploadDate: "02032009", //DDMMYYYY
-        dataType: "csv", //csv,json
+        uploadDate: "20191201", //yyyymmdd
+        dataType: "csv", //csv,json,
+        downloadSize: "1",//in GB
+
       },
       2: {
         id: "2",
@@ -65,8 +69,10 @@ export default class Listings extends Component {
         tags: ["Non-Medical"],
         versions: "",
         uploadBy: "",
-        uploadDate: "22032009", //DDMMYYYY
-        dataType: "json", //csv,json
+        uploadDate: "20031209",  //YYYYmmdd
+        dataType: "json", //csv,json,
+        downloadSize: "20",//in GB
+
       },
       3: {
         id: "3",
@@ -76,8 +82,10 @@ export default class Listings extends Component {
         tags: ["Non-Medical"],
         versions: "",
         uploadBy: "",
-        uploadDate: "22102019", //DDMMYYYY
-        dataType: "json", //csv,json
+        uploadDate: "20190122", //YYYYmmdd
+        dataType: "json", //csv,json,
+        downloadSize: "55",//in GB
+
       },
       4: {
         id: "4",
@@ -87,8 +95,10 @@ export default class Listings extends Component {
         tags: ["Medical"],
         versions: "",
         uploadBy: "",
-        uploadDate: "04102022", //DDMMYYYY
-        dataType: "json", //csv,json
+        uploadDate: "20191112", //yyyymmdd
+        dataType: "json", //csv,json,
+        downloadSize: "0",//in GB
+
       },
     };
     // TODO
@@ -116,6 +126,27 @@ export default class Listings extends Component {
       // comparing category for displaying data
     });
     this.setState({ displayDataset: newItem });
+  }
+
+  filterByDatatype(tagName) {
+    console.log(tagName);
+    const newItem = this.state.datasets.filter((newVal) => {
+      return newVal[1].dataType == tagName;
+      // comparing category for displaying data
+    });
+    this.setState({ displayDataset: newItem });
+  }
+
+  sortUploadDate(order) {
+    let tempdataset = this.state.datasets;
+    tempdataset.sort((a, b) => (order == "Increasing" ? 1 : -1) * (a[1].uploadDate - b[1].uploadDate))
+    this.setState({displayDataset: tempdataset})
+  }
+
+  sortDownloadSize(order) {
+    let tempdataset = this.state.datasets;
+    tempdataset.sort((a, b) => (order == "Increasing" ? 1 : -1) * (a[1].downloadSize - b[1].downloadSize))
+    this.setState({displayDataset: tempdataset})
   }
 
   render() {
@@ -217,6 +248,20 @@ export default class Listings extends Component {
                 </Dropdown.Item>
                 <Dropdown.Item onClick={() => this.filterByTags("etc")}>
                   Something else
+                </Dropdown.Item>
+              </DropdownButton>
+
+              <DropdownButton
+                variant="secondary"
+                menuVariant="dark"
+                title="Filter by DataType"
+                style={{ borderRadius: "20px" }}
+              >
+                <Dropdown.Item onClick={() => this.filterByDatatype("csv")}>
+                  CSV
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => this.filterByDatatype("json")}>
+                  JSON
                 </Dropdown.Item>
               </DropdownButton>
 
