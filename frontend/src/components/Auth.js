@@ -27,6 +27,10 @@ export default class CreateUser extends Component {
     this.setState({ password: event.target.value });
   }
 
+  onChangeName = (event) => {
+    this.setState({ name: event.target.value });
+  }
+
   onChangeAdmin = (event) => {
     console.log(event.target.checked)
     this.setState({ admin: event.target.checked });
@@ -63,6 +67,7 @@ export default class CreateUser extends Component {
           if (res.data?.success === true) {
             sessionStorage.setItem("userdata_listing", JSON.stringify(res.data.authInfo))
             this.pagetoast("Logged in successfully 🏆")
+            this.setState({ loading: true })
             setTimeout(() => {
               if (res.data.authInfo.admin) {
                 window.history.pushState({}, '', `/admin-portal`)
@@ -100,7 +105,8 @@ export default class CreateUser extends Component {
           if (res.data?.success === true) {
             if (res.data?.success === true) {
               sessionStorage.setItem("userdata_listing", JSON.stringify(res.data.authInfo))
-              this.pagetoast("Register successfull 🎯")
+              this.pagetoast("Registeration successfull 🎯")
+              this.setState({ loading: true })
               setTimeout(() => {
                 if (res.data.authInfo.admin) {
                   window.history.pushState({}, '', `/admin-portal`)
@@ -154,88 +160,109 @@ export default class CreateUser extends Component {
 
         {
           this.state.loading
-            ? <div style={{ width: '100%', height: '100%', position: 'absolute', zIndex: 100, alignItems: 'center', justifyContent: 'center', alignContent: 'center', display: 'flex', background: 'rgba(0,0,0,0.1)' }}>
-              <div class="spinner-border" role="status" style={{width: '4em', height: '4em'}}>
-                <span class="sr-only">Loading...</span>
+          && <div style={{ width: '100%', height: '100%', position: 'absolute', zIndex: 100, alignItems: 'center', justifyContent: 'center', alignContent: 'center', display: 'flex', background: 'rgba(0,0,0,0.1)' }}>
+            <div class="spinner-grow m-1 text-primary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow m-1 text-secondary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow m-1 text-success" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow m-1 text-danger" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow m-1 text-warning" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow m-1 text-info" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow m-1 text-light" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow m-1 text-dark" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>}
+        <section class="vh-100">
+          <div class="container-fluid h-custom">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                  class="img-fluid" alt=""></img>
+              </div>
+              <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <form onSubmit={this.onSubmit}>
+                  <div class="divider d-flex align-items-center my-4">
+                    <p class="text-center fw-bold mx-3 mb-0">{this.state.logging ? "Sign in" : "Create your account"}</p>
+                  </div>
+
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label" >Email address</label>
+                    <input type="email" class="form-control form-control-lg"
+                      placeholder="Enter your email address" value={this.state.email} onChange={this.onChangeEmail} />
+                  </div>
+
+                  {!this.state.logging && <div class="form-outline mb-4">
+                    <label class="form-label" >Full Name</label>
+                    <input type="text" class="form-control form-control-lg"
+                      placeholder="Enter your name" value={this.state.name} onChange={this.onChangeName} />
+                  </div>}
+
+                  <div class="form-outline mb-3">
+                    <label class="form-label" >Password</label>
+                    <input type="password" class="form-control form-control-lg"
+                      placeholder="Enter password" value={this.state.password} onChange={this.onChangePassword} />
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="form-check mb-0">
+                      {!this.state.logging &&
+                        <>
+                          <input class="form-check-input me-2" type="checkbox" checked={this.state.admin} onChange={this.onChangeAdmin} />
+                          <label class="form-check-label" >
+                            Register as Admin
+                          </label>
+                        </>
+                      }
+                    </div>
+                    <a href="#!" class="text-body">Forgot password?</a>
+                  </div>
+
+                  <div class="text-center text-lg-start mt-4 pt-2">
+                    <button type="submit" class="btn btn-primary btn-lg" style={{ 'padding-left': '2.5rem', 'padding-right': '2.5rem' }}>{this.state.logging ? "Login" : "Register"}</button>
+                    <p class="small fw-bold mt-2 pt-1 mb-0">{this.state.logging ? "Don't have an account?" : "Do you have an account ?"} <a onClick={() => this.setState({ logging: !this.state.logging })} class="link-danger">{this.state.logging ? "Register" : "Log In"}</a></p>
+                  </div>
+
+                </form>
               </div>
             </div>
-            : <section class="vh-100">
-              <div class="container-fluid h-custom">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-                  <div class="col-md-9 col-lg-6 col-xl-5">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                      class="img-fluid" alt=""></img>
-                  </div>
-                  <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                    <form onSubmit={this.onSubmit}>
-                      <div class="divider d-flex align-items-center my-4">
-                        <p class="text-center fw-bold mx-3 mb-0">{this.state.logging ? "Sign in" : "Create your account"}</p>
-                      </div>
+          </div>
+          <div
+            class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+            <div class="text-white mb-3 mb-md-0">
+              Copyright © 2022. All rights reserved.
+            </div>
 
-
-                      <div class="form-outline mb-4">
-                        <label class="form-label" >Email address</label>
-                        <input type="email" class="form-control form-control-lg"
-                          placeholder="Enter your email address" value={this.state.email} onChange={this.onChangeEmail} />
-                      </div>
-
-                      {!this.state.logging && <div class="form-outline mb-4">
-                        <label class="form-label" >Full Name</label>
-                        <input type="text" class="form-control form-control-lg"
-                          placeholder="Enter your name" value={this.state.name} onChange={this.onChangeName} />
-                      </div>}
-
-                      <div class="form-outline mb-3">
-                        <label class="form-label" >Password</label>
-                        <input type="password" class="form-control form-control-lg"
-                          placeholder="Enter password" value={this.state.password} onChange={this.onChangePassword} />
-                      </div>
-
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="form-check mb-0">
-                          {!this.state.logging &&
-                            <>
-                              <input class="form-check-input me-2" type="checkbox" checked={this.state.admin} onChange={this.onChangeAdmin} />
-                              <label class="form-check-label" >
-                                Register as Admin
-                              </label>
-                            </>
-                          }
-                        </div>
-                        <a href="#!" class="text-body">Forgot password?</a>
-                      </div>
-
-                      <div class="text-center text-lg-start mt-4 pt-2">
-                        <button type="submit" class="btn btn-primary btn-lg" style={{ 'padding-left': '2.5rem', 'padding-right': '2.5rem' }}>{this.state.logging ? "Login" : "Register"}</button>
-                        <p class="small fw-bold mt-2 pt-1 mb-0">{this.state.logging ? "Don't have an account?" : "Do you have an account ?"} <a onClick={() => this.setState({ logging: !this.state.logging })} class="link-danger">{this.state.logging ? "Register" : "Log In"}</a></p>
-                      </div>
-
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-                <div class="text-white mb-3 mb-md-0">
-                  Copyright © 2022. All rights reserved.
-                </div>
-
-                <div>
-                  <a href="#!" class="text-white me-4">
-                    <i class="fab fa-facebook-f"></i>
-                  </a>
-                  <a href="#!" class="text-white me-4">
-                    <i class="fab fa-twitter"></i>
-                  </a>
-                  <a href="#!" class="text-white me-4">
-                    <i class="fab fa-google"></i>
-                  </a>
-                  <a href="#!" class="text-white">
-                    <i class="fab fa-linkedin-in"></i>
-                  </a>
-                </div>
-              </div>
-            </section>}
+            <div>
+              <a href="#!" class="text-white me-4">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#!" class="text-white me-4">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#!" class="text-white me-4">
+                <i class="fab fa-google"></i>
+              </a>
+              <a href="#!" class="text-white">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+        </section>
       </div>
     )
   }

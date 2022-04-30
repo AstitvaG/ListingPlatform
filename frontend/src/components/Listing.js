@@ -8,6 +8,7 @@ export default class Listings extends Component {
     super(props);
 
     this.state = {
+      loading: true,
       datasets: Object.entries({
         id: {
           id: "",
@@ -38,6 +39,14 @@ export default class Listings extends Component {
   }
 
   componentDidMount() {
+    let prevAuthDetails = sessionStorage.getItem("userdata_listing")
+    if (prevAuthDetails === null) {
+      window.history.pushState({}, '', `/auth`)
+      window.location.reload()
+    }
+    else {
+      this.setState({ loading: false })
+    }
     let datasets = {
       1: {
         id: "1",
@@ -141,6 +150,34 @@ export default class Listings extends Component {
   }
 
   render() {
+    if (this.state.loading) {
+      return <div style={{ width: '100%', height: '100%', position: 'absolute', zIndex: 100, alignItems: 'center', justifyContent: 'center', alignContent: 'center', display: 'flex', background: 'rgba(0,0,0,0.1)' }}>
+        <div class="spinner-grow m-1 text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow m-1 text-secondary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow m-1 text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow m-1 text-danger" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow m-1 text-warning" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow m-1 text-info" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow m-1 text-light" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow m-1 text-dark" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    }
     return (
       <div>
         <div className="d-flex justify-content-around row">
