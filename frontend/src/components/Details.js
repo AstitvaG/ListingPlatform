@@ -111,7 +111,7 @@ export default class UsersList extends Component {
                             <button>{data.subscribed ? "Subscibed" : "Subscibe"}</button>
                         </div>
                         <div id="download-button" className='mx-2'>
-                            <button onClick={() => this.onDownload()}>Download Now</button>
+                            <button>Download Now</button>
                         </div>
                     </div>
                 </div>
