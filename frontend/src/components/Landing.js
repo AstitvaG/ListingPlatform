@@ -15,7 +15,7 @@ export default class LandingPage extends Component {
 
     render() {
         return (
-      
+          
         <div align = 'center'>
         <div class="card-group" style={{'width': '30rem'}}>
   <div class="card mr-5">
