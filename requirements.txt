@@ -1,0 +1,4 @@
+sudo apt-get install node npm
+pip3 install flask
+npm install -g yarn
+cd frontend && yarn
