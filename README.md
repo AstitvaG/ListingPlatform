@@ -29,6 +29,55 @@ yarn build
 ```
 
 
+## File/Direction Structure
+```txt
+./ListingPlatform
+├── backend
+│   ├── server.py
+│   └── users.json
+├── frontend
+│   ├── config-overrides.js
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── public
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   └── robots.txt
+│   ├── README.md
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.js
+│   │   ├── components
+│   │   │   ├── Auth.js
+│   │   │   ├── css
+│   │   │   │   ├── Auth.css
+│   │   │   │   ├── Dashboard.css
+│   │   │   │   ├── Details.css
+│   │   │   │   └── Landing.css
+│   │   │   ├── Dashboard.js
+│   │   │   ├── Details.js
+│   │   │   ├── img
+│   │   │   │   ├── challenge.png
+│   │   │   │   └── dataset.png
+│   │   │   ├── Landing.js
+│   │   │   ├── Listing.js
+│   │   │   ├── Subscription.js
+│   │   │   └── Tabs
+│   │   │       ├── Description.js
+│   │   │       ├── Metadata.js
+│   │   │       ├── Versions.js
+│   │   │       └── Visualization.js
+│   │   ├── index.css
+│   │   ├── index.js
+│   │   └── serviceWorker.js
+│   ├── yarn-error.log
+│   └── yarn.lock
+├── Requirements.txt
+└── README.md
+```
 
 
 
