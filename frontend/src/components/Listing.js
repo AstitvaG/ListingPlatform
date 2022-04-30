@@ -64,6 +64,34 @@ export default class Listings extends Component {
       <div>
         <div className="d-flex justify-content-around row">
           <div>
+          <div
+              className="flex justify-content-around row"
+              style={{
+                backgroundColor: "#dddddd",
+                borderRadius: "20px",
+                width: "18rem",
+                height: "10rem"
+              }}
+            >
+            <div style={{ fontSize: "30px", textAlign: "center", padding:'1rem' }}>
+                Contribute
+              </div>
+
+            <div className="side-props-dt">
+              <button
+                  className="btn btn-secondary"
+                  type="button"
+                    onClick={(e) => this.onUpload()}
+                >
+                  Upload new Dataset
+                </button>
+              </div>
+
+            </div>
+
+            <br/>
+            <br/>
+
             <div
               className="flex justify-content-around row"
               style={{
@@ -93,15 +121,7 @@ export default class Listings extends Component {
                 <Dropdown.Item onClick={(e) => this.sortDownloadSize("Decreasing")}>Decreasing</Dropdown.Item>
               </DropdownButton>
 
-              <div className="side-props-dt">
-              <button
-                  className="btn btn-secondary"
-                  type="button"
-                    onClick={(e) => this.onUpload()}
-                >
-                  Upload new Dataset
-                </button>
-              </div>
+             
             </div>
           </div>
 
