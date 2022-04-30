@@ -8,37 +8,69 @@ export default class Listings extends Component {
     super(props);
 
     this.state = {
-      datasets: [
-        {
+      datasets: {
+        id: {
           id: "",
           name: "",
           description: "",
-          tags: {},
-          version: "", 
+          tags: [],
+          versions: "", 
           uploadBy: "",
           uploadDate: "", //DDMMYYYY
           dataType: "", //csv,json
         },
-      ],
+      },
     };
   }
 
   componentDidMount() {
     this.setState({
-      datasets: [
-        {
+      datasets: {
+        "1": {
           id: "1",
           name: "DATASET1",
           description:
             'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
+          tags: ["Medical"],
+          versions: "", 
+          uploadBy: "",
+          uploadDate: "02032009", //DDMMYYYY
+          dataType: "csv", //csv,json
         },
-        {
+        "2": {
           id: "2",
           name: "DATASET2",
           description:
             'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
+          tags: ["Non-Medical"],
+          versions: "", 
+          uploadBy: "",
+          uploadDate: "22032009", //DDMMYYYY
+          dataType: "json", //csv,json
         },
-      ],
+        "3": {
+          id: "3",
+          name: "DATASET3",
+          description:
+            'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
+          tags: ["Non-Medical"],
+          versions: "", 
+          uploadBy: "",
+          uploadDate: "22102019", //DDMMYYYY
+          dataType: "json", //csv,json
+        },
+        "4": {
+          id: "4",
+          name: "DATASET4",
+          description:
+            'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
+          tags: ["Medical"],
+          versions: "", 
+          uploadBy: "",
+          uploadDate: "04102022", //DDMMYYYY
+          dataType: "json", //csv,json
+        },
+      },
     });
     // TODO
     // axios.get(`${backend_url}/get_details/${this.state.dataset_slug}`).then(res => {
@@ -50,7 +82,6 @@ export default class Listings extends Component {
   }
 
   onUpload(e) {
-    e.preventDefault();
     //send request to upload team.
   }
 
@@ -126,7 +157,7 @@ export default class Listings extends Component {
           </div>
 
           <div>
-            {this.state.datasets.map((datasetId, i) => {
+            {Object.entries(this.state.datasets).map((datasetId, i) => {
               return (
                 <div style={{ padding: "1rem" }}>
                   <div
@@ -144,11 +175,11 @@ export default class Listings extends Component {
                     >
                       <div className="d-flex row">
                         <h5 style={{ flex: 1, padding: "0.5rem" }}>
-                          {datasetId.name}
+                          {datasetId[1].name}
                         </h5>
                         <div className="d-flex flex-row-reverse">
                           <Link
-                            to={`/details/${datasetId.name}`}
+                            to={`/details/${datasetId[1].name}`}
                             className="btn btn-secondary"
                             style={{
                               borderRadius: "20px",
@@ -162,7 +193,7 @@ export default class Listings extends Component {
                       </div>
                     </div>
                     <div className="card-body">
-                      <p className="card-text">{datasetId.description}</p>
+                      <p className="card-text">{datasetId[1].description}</p>
                     </div>
                   </div>
                 </div>
