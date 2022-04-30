@@ -54,33 +54,32 @@ export default class UsersList extends Component {
     }
     onDownload(datasetName, datasetVersion, datasetCreatorName, requestingUser, secretToken) {
         //from team 3
-            let url = "dataversedownloadmanager://opendownloader?";
-            if(datasetName !== null && datasetName !== undefined)
-                url += ("datasetName="+datasetName);
-            url += "&";
-        
-            if(datasetVersion !== null && datasetVersion !== undefined)
-                url += ("datasetVersion="+datasetVersion);
-            url += "&";
-        
-            if(datasetCreatorName !== null && datasetCreatorName !== undefined)
-                url += ("datasetCreatorName="+datasetCreatorName);
-            url += "&";
-        
-            if(requestingUser !== null && requestingUser !== undefined)
-                url += ("requestingUser="+requestingUser);
-            url += "&";
-            
-            if(secretToken !== null && secretToken !== undefined)
-                url += ("secretToken="+secretToken);
-            
-        
-            const a = document.createElement('a');
-            a.href = url;
-            a.click();
-        
-        }
-    
+        let url = "dataversedownloadmanager://opendownloader?";
+        if (datasetName !== null && datasetName !== undefined)
+            url += ("datasetName=" + datasetName);
+        url += "&";
+
+        if (datasetVersion !== null && datasetVersion !== undefined)
+            url += ("datasetVersion=" + datasetVersion);
+        url += "&";
+
+        if (datasetCreatorName !== null && datasetCreatorName !== undefined)
+            url += ("datasetCreatorName=" + datasetCreatorName);
+        url += "&";
+
+        if (requestingUser !== null && requestingUser !== undefined)
+            url += ("requestingUser=" + requestingUser);
+        url += "&";
+
+        if (secretToken !== null && secretToken !== undefined)
+            url += ("secretToken=" + secretToken);
+
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.click();
+
+    }
 
     render() {
         let { data } = this.state;
