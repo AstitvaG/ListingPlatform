@@ -48,16 +48,28 @@ export default class ProfilePage extends Component {
         {
           startDate: "2-10-22",
           endDate: "10-10-22",
+          approvalStatus: "Approved"
         },
         "2":
         {
           startDate: "2-10-22",
           endDate: "20-10-22",
+          approvalStatus: "Approved"
+
         },
         "3":
         {
           startDate: "2-10-22",
           endDate: "30-10-22",
+          approvalStatus: "Approved"
+
+        },
+        "4":
+        {
+          startDate: "",
+          endDate: "",
+          approvalStatus: "Pending"
+
         },
       },
     };
