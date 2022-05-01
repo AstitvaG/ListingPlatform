@@ -38,13 +38,12 @@ export default class UsersList extends Component {
     }
 
     componentDidMount() {
-        // let prevAuthDetails = sessionStorage.getItem("userdata_listing")
-        // if (prevAuthDetails === null) {
-        //     window.history.pushState({}, '', `/auth`)
-        //     window.location.reload()
-        // }
-        // else 
-        {
+        let prevAuthDetails = sessionStorage.getItem("userdata_listing")
+        if (prevAuthDetails === null) {
+            window.history.pushState({}, '', `/auth`)
+            window.location.reload()
+        }
+        else {
             this.setState({ loading: false })
         }
 
