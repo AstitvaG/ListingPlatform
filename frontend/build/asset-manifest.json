@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.4dd92c09.chunk.css",
-    "main.js": "/static/js/main.ee480ea6.chunk.js",
-    "main.js.map": "/static/js/main.ee480ea6.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.1b461360.js",
-    "runtime-main.js.map": "/static/js/runtime-main.1b461360.js.map",
-    "static/css/2.53dbe38b.chunk.css": "/static/css/2.53dbe38b.chunk.css",
-    "static/js/2.8f0c203f.chunk.js": "/static/js/2.8f0c203f.chunk.js",
-    "static/js/2.8f0c203f.chunk.js.map": "/static/js/2.8f0c203f.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.be8254cd8ca369b807e8f7d4f8d59d82.js": "/precache-manifest.be8254cd8ca369b807e8f7d4f8d59d82.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.53dbe38b.chunk.css.map": "/static/css/2.53dbe38b.chunk.css.map",
-    "static/css/main.4dd92c09.chunk.css.map": "/static/css/main.4dd92c09.chunk.css.map",
-    "static/js/2.8f0c203f.chunk.js.LICENSE.txt": "/static/js/2.8f0c203f.chunk.js.LICENSE.txt",
-    "static/media/challenge.png": "/static/media/challenge.a6f2cfe3.png",
-    "static/media/dataset.png": "/static/media/dataset.10e6e2b7.png"
+    "main.css": "/ListingPlatform/static/css/main.4dd92c09.chunk.css",
+    "main.js": "/ListingPlatform/static/js/main.51c06ec3.chunk.js",
+    "main.js.map": "/ListingPlatform/static/js/main.51c06ec3.chunk.js.map",
+    "runtime-main.js": "/ListingPlatform/static/js/runtime-main.369e05d9.js",
+    "runtime-main.js.map": "/ListingPlatform/static/js/runtime-main.369e05d9.js.map",
+    "static/css/2.53dbe38b.chunk.css": "/ListingPlatform/static/css/2.53dbe38b.chunk.css",
+    "static/js/2.8f0c203f.chunk.js": "/ListingPlatform/static/js/2.8f0c203f.chunk.js",
+    "static/js/2.8f0c203f.chunk.js.map": "/ListingPlatform/static/js/2.8f0c203f.chunk.js.map",
+    "index.html": "/ListingPlatform/index.html",
+    "precache-manifest.a9d1400ef159ef0767b7edcd427fde21.js": "/ListingPlatform/precache-manifest.a9d1400ef159ef0767b7edcd427fde21.js",
+    "service-worker.js": "/ListingPlatform/service-worker.js",
+    "static/css/2.53dbe38b.chunk.css.map": "/ListingPlatform/static/css/2.53dbe38b.chunk.css.map",
+    "static/css/main.4dd92c09.chunk.css.map": "/ListingPlatform/static/css/main.4dd92c09.chunk.css.map",
+    "static/js/2.8f0c203f.chunk.js.LICENSE.txt": "/ListingPlatform/static/js/2.8f0c203f.chunk.js.LICENSE.txt",
+    "static/media/challenge.png": "/ListingPlatform/static/media/challenge.a6f2cfe3.png",
+    "static/media/dataset.png": "/ListingPlatform/static/media/dataset.10e6e2b7.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.1b461360.js",
+    "static/js/runtime-main.369e05d9.js",
     "static/css/2.53dbe38b.chunk.css",
     "static/js/2.8f0c203f.chunk.js",
     "static/css/main.4dd92c09.chunk.css",
-    "static/js/main.ee480ea6.chunk.js"
+    "static/js/main.51c06ec3.chunk.js"
   ]
 }
