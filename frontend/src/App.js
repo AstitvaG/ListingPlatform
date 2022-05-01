@@ -32,14 +32,11 @@ class App extends Component {
 						<div className="collapse navbar-collapse justify-content-between">
 							<ul className="navbar-nav mr-auto">
 								<li className="navbar-item">
-									<Link to="/dashboard" className="nav-link">Dashboard</Link>
-								</li>
-								<li className="navbar-item">
 									<Link to="/listing" className="nav-link">Dataset List</Link>
 								</li>
-								<li className="navbar-item">
+								{/* <li className="navbar-item">
 									<Link to="/details/dataset-slug" className="nav-link">Details</Link>
-								</li>
+								</li> */}
 								{this.state.userdata !== null && this.state.userdata.admin===true && <li className="navbar-item">
 									<Link to="/admin-portal" className="nav-link">Admin Portal</Link>
 								</li>}
@@ -49,9 +46,12 @@ class App extends Component {
 									<Link to="/auth" className="nav-link">Login/Signup</Link>
 								</li>}
 								{this.state.userdata !== null && <li className="navbar-item">
-									<Link to="/auth" className="nav-link">{this.state.userdata.name}{this.state.userdata.admin ? " (Admin)" : ""}</Link>
+									<Link to="/auth" className="nav-link">Hey, {this.state.userdata.name}{this.state.userdata.admin ? " (Admin)" : ""}!</Link>
 								</li>}
-								{this.state.userdata !== null && <li className="navbar-item">
+								{this.state.userdata !== null && <li className="navbar-item ml-3">
+									<Link to="/dashboard" className="nav-link">My Profile</Link>
+								</li>}
+								{this.state.userdata !== null && <li className="navbar-item ml-3">
 									<Link onClick={() => {
 										sessionStorage.removeItem("userdata_listing");
 										window.location.reload()

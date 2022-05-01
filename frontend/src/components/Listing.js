@@ -45,7 +45,7 @@ export default class Listings extends Component {
     //   window.location.reload()
     // }
     // else
-     {
+    {
       this.setState({ loading: false })
     }
     let datasets = {
@@ -154,13 +154,13 @@ export default class Listings extends Component {
   sortUploadDate(order) {
     let tempdataset = this.state.datasets;
     tempdataset.sort((a, b) => (order == "Increasing" ? 1 : -1) * (a[1].uploadDate - b[1].uploadDate))
-    this.setState({displayDataset: tempdataset})
+    this.setState({ displayDataset: tempdataset })
   }
 
   sortDownloadSize(order) {
     let tempdataset = this.state.datasets;
     tempdataset.sort((a, b) => (order == "Increasing" ? 1 : -1) * (a[1].downloadSize - b[1].downloadSize))
-    this.setState({displayDataset: tempdataset})
+    this.setState({ displayDataset: tempdataset })
   }
 
   render() {
@@ -216,13 +216,15 @@ export default class Listings extends Component {
               </div>
 
               <div className="side-props-dt">
-                <button
-                  className="btn btn-secondary"
-                  type="button"
-                  onClick={() => this.onUpload()}
-                >
-                  Upload new Dataset
-                </button>
+                <Link to="/upload">
+                  <button
+                    className="btn btn-secondary"
+                    type="button"
+                    onClick={() => this.onUpload()}
+                  >
+                    Upload new Dataset
+                  </button>
+                </Link>
               </div>
             </div>
 
