@@ -8,28 +8,71 @@ export default class ProfilePage extends Component {
     super(props);
 
     this.state = {
-      datasets:
-      {
-        "1":
-        {
+      datasets: {
+        "1": {
           id: "1",
           name: "DATASET1",
           description:
             'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
+          tags: ["Medical"],
+          versions: "",
+          uploadBy: "",
+          uploadDate: "20191201", //yyyymmdd
+          dataType: "csv", //csv,json,
+          downloadSize: "1",//in GB
+  
         },
-        "2":
-        {
+        "2": {
           id: "2",
           name: "DATASET2",
           description:
             'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
+          tags: ["Non-Medical"],
+          versions: "",
+          uploadBy: "",
+          uploadDate: "20031209",  //YYYYmmdd
+          dataType: "json", //csv,json,
+          downloadSize: "20",//in GB
+  
         },
-        "3":
-        {
+        "3": {
           id: "3",
           name: "DATASET3",
           description:
             'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
+          tags: ["Non-Medical"],
+          versions: "",
+          uploadBy: "",
+          uploadDate: "20190122", //YYYYmmdd
+          dataType: "json", //csv,json,
+          downloadSize: "55",//in GB
+  
+        },
+        "4": {
+          id: "4",
+          name: "DATASET4",
+          description:
+            'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
+          tags: ["Medical"],
+          versions: "",
+          uploadBy: "",
+          uploadDate: "20191112", //yyyymmdd
+          dataType: "json", //csv,json,
+          downloadSize: "0",//in GB
+  
+        },
+        "5": {
+          id: "5",
+          name: "DATASET5",
+          description:
+            'Alternate bind version (for css-modules If you are using css-modules, or a similar approach to abstract class "names" and the real className values that are actually output to the DOM, you may want to use the bind variant',
+          tags: [],
+          versions: "",
+          uploadBy: "",
+          uploadDate: "20221112", //yyyymmdd
+          dataType: "json", //csv,json,
+          downloadSize: "10",//in GB
+  
         },
       },
       uploads: [
@@ -62,6 +105,7 @@ export default class ProfilePage extends Component {
         },
         "4":
         {
+          id: "4",
           startDate: "",
           endDate: "",
           approvalStatus: "Pending"
@@ -82,6 +126,7 @@ export default class ProfilePage extends Component {
             {this.state.uploads.map((datasetId, i) => {
               return (
                 <div style={{ padding: "1rem" }}>
+                  {console.log("ghvfhd",datasetId)}
                   <div
                     className="card"
                     style={{ flex: 1, width: "30rem", borderRadius: "20px" }}
@@ -101,7 +146,7 @@ export default class ProfilePage extends Component {
                         </h5>
                         <div className="d-flex flex-row-reverse">
                           <Link
-                            to={`/details/${this.state.datasets[datasetId].name}`}
+                            to={`/details/${this.state.datasets[datasetId].id}`}
                             className="btn btn-secondary"
                             style={{
                               borderRadius: "20px",
@@ -152,7 +197,7 @@ export default class ProfilePage extends Component {
                         </h5>
                         <div className="d-flex flex-row-reverse">
                           <Link
-                            to={`/details/${this.state.datasets[datasetId[1].id].name}`}
+                            to={`/details/${this.state.datasets[datasetId[1].id].id}`}
                             className="btn btn-secondary"
                             style={{
                               borderRadius: "20px",
@@ -168,8 +213,20 @@ export default class ProfilePage extends Component {
                     <div className="card-body">
                       <p className="card-text">{this.state.datasets[datasetId[1].id].description}</p>
                       <hr/>
-                      <p className="card-text">Subscription ends on:  {datasetId.endDate}
-                      </p>
+                            {
+                              datasetId[1].id != undefined 
+                              &&
+                              datasetId[1].startDate === "" 
+                              &&
+                              <p className="card-text">Subscription Pending!</p>
+                            }
+                            {
+                              datasetId[1].id != undefined 
+                              &&
+                              datasetId[1].startDate != ""
+                              &&
+                      <p className="card-text">Subscription ends on: {datasetId[1].endDate}</p>
+                            }
                     </div>
                   </div>
                 </div>
