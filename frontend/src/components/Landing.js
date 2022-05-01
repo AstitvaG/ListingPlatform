@@ -3,59 +3,59 @@ import axios from "axios";
 import "./css/Landing.css";
 import { Link } from "react-router-dom";
 export default class LandingPage extends Component {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.state = {
-      subscriptions: {
-        key: {
-		  id: "",
-          startDate: "",
-          endDate: "",
-          approvalStatus: "",
-        },
-      },
-    };
-  }
+		this.state = {
+			subscriptions: {
+				key: {
+					id: "",
+					startDate: "",
+					endDate: "",
+					approvalStatus: "",
+				},
+			},
+		};
+	}
 
-  componentDidMount() {
-    this.setState({
-      subscriptions: {
-        "1": {
-		  id: "1",
-          startDate: "2-10-22",
-          endDate: "10-10-22",
-          approvalStatus: "Approved",
-        },
-        "2": {
-		  id: "2",
-          startDate: "2-10-22",
-          endDate: "20-10-22",
-          approvalStatus: "Approved",
-        },
-        "3": {
-		  id: "3",
-          startDate: "2-10-22",
-          endDate: "30-10-22",
-          approvalStatus: "Approved",
-        },
-        "4": {
-		  id: "4",
-          startDate: "",
-          endDate: "",
-          approvalStatus: "Pending",
-        },
-      },
-    });
-	 // TODO
-    // axios.get(`${backend_url}/get_subscription_data/${this.state.dataset_slug}`).then(res => {
-    //     this.setState({
-    //         subscriptions: res.data,
-    //         loading: false
-    //     });
-    // })
-	sessionStorage.setItem("subscriptionData", this.state.subscriptions);
-  }
+	componentDidMount() {
+		this.setState({
+			subscriptions: {
+				"1": {
+					id: "1",
+					startDate: "2-10-22",
+					endDate: "10-10-22",
+					approvalStatus: "Approved",
+				},
+				"2": {
+					id: "2",
+					startDate: "2-10-22",
+					endDate: "20-10-22",
+					approvalStatus: "Approved",
+				},
+				"3": {
+					id: "3",
+					startDate: "2-10-22",
+					endDate: "30-10-22",
+					approvalStatus: "Approved",
+				},
+				"4": {
+					id: "4",
+					startDate: "",
+					endDate: "",
+					approvalStatus: "Pending",
+				},
+			},
+		});
+		// TODO
+		// axios.get(`${backend_url}/get_subscription_data/${this.state.dataset_slug}`).then(res => {
+		//     this.setState({
+		//         subscriptions: res.data,
+		//         loading: false
+		//     });
+		// })
+		sessionStorage.setItem("subscriptionData", this.state.subscriptions);
+	}
 
 	state = {
 

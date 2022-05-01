@@ -5,6 +5,7 @@ import Description from './Tabs/Description';
 import Metadata from './Tabs/Metadata';
 import Versions from './Tabs/Versions';
 import Visualization from './Tabs/Visualization';
+import Subsciption from './Subscription';
 
 export default class UsersList extends Component {
 
@@ -24,7 +25,8 @@ export default class UsersList extends Component {
             use_cases: ['Temp Usecase 1', 'Temp Usecase 2', 'Temp Usecase 3'],
             citations: [['Temp paper 1', 'Temp person 1'], ['Temp paper 2', 'Temp person 2'], ['Temp paper 3', 'Temp person 3']]
         },
-        activeTab: 0
+        activeTab: 0,
+        showSubscriptionModal: false,
     }
 
     componentDidMount() {
@@ -41,6 +43,13 @@ export default class UsersList extends Component {
     changeTab = (newTab) => {
         this.setState({ activeTab: newTab })
     }
+
+    toggleSubsciptionModal = () => {
+        this.setState({ showSubscriptionModal: !this.state.showSubscriptionModal })
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////
     onDownload(datasetName, datasetVersion, datasetCreatorName, requestingUser, secretToken) {
         //from team 3
         let url = "dataversedownloadmanager://opendownloader?";
@@ -69,6 +78,8 @@ export default class UsersList extends Component {
         a.click();
 
     }
+    /////////////////////////////////////////////////////////////////////////////////////
+
 
     render() {
         let { data } = this.state;
@@ -101,55 +112,59 @@ export default class UsersList extends Component {
             </div>
         }
         return (
-            <div className='mx-5'>
-                <div id="title-row" className='d-flex justify-content-between row'>
-                    <div id="dataset-name">
-                        <h1>{data.name}</h1>
+            <div>
+                {this.state.showSubscriptionModal && <Subsciption data={data} toggle={this.toggleSubsciptionModal} />}
+
+                <div className='mx-5'>
+                    <div id="title-row" className='d-flex justify-content-between row'>
+                        <div id="dataset-name">
+                            <h1>{data.name}</h1>
+                        </div>
+                        <div className='row'>
+                            <div id="subsciption-button" className='mx-2'>
+                                <button type="button" onClick={this.toggleSubsciptionModal} className='details-tab active btnx'>{data.subscribed ? "Subscibed" : "Subscibe"}</button>
+                            </div>
+                            <div id="download-button" className='mx-2'>
+                                <button type="button" className='details-tab active btnx'>Download Now</button>
+                            </div>
+                        </div>
                     </div>
-                    <div className='row'>
-                        <div id="subsciption-button" className='mx-2'>
-                            <button>{data.subscribed ? "Subscibed" : "Subscibe"}</button>
-                        </div>
-                        <div id="download-button" className='mx-2'>
-                            <button>Download Now</button>
-                        </div>
-                    </div>
-                </div>
-                <div className='d-flex row'>
-                    <div style={{ flex: 2 }}>
-                        <div id='details-tabs' className='row'>
-                            <button onClick={() => this.changeTab(0)} className={`details-tab ${this.state.activeTab === 0 ? 'active' : ''}`}>Desciption</button>
-                            <button onClick={() => this.changeTab(1)} className={`details-tab ${this.state.activeTab === 1 ? 'active' : ''}`}>Metadata</button>
-                            <button onClick={() => this.changeTab(2)} className={`details-tab ${this.state.activeTab === 2 ? 'active' : ''}`}>Versions</button>
-                            <button onClick={() => this.changeTab(3)} className={`details-tab ${this.state.activeTab === 3 ? 'active' : ''}`}>Visualizations</button>
-                        </div>
-                        {
+                    <div className='d-flex row'>
+                        <div style={{ flex: 2 }}>
+                            <div id='details-tabs' className='row'>
+                                <button onClick={() => this.changeTab(0)} className={`details-tab ${this.state.activeTab === 0 ? 'active' : ''}`}>Desciption</button>
+                                <button onClick={() => this.changeTab(1)} className={`details-tab ${this.state.activeTab === 1 ? 'active' : ''}`}>Metadata</button>
+                                <button onClick={() => this.changeTab(2)} className={`details-tab ${this.state.activeTab === 2 ? 'active' : ''}`}>Versions</button>
+                                <button onClick={() => this.changeTab(3)} className={`details-tab ${this.state.activeTab === 3 ? 'active' : ''}`}>Visualizations</button>
+                            </div>
                             {
-                                0: <Description data={data} />,
-                                1: <Metadata />,
-                                2: <Versions />,
-                                3: <Visualization />
-                            }[this.state.activeTab]
-                        }
-                    </div>
-                    <div style={{ flex: 1 }}>
-                        <div className="m-5 p-4" style={{ backgroundColor: '#dddddd', borderRadius: '20px' }}>
-                            <div style={{ fontSize: '30px' }}>Properties</div>
-                            <div className='side-props-dt'>
-                                <div>Upload Date</div>
-                                <div>{data.upload_date}</div>
-                            </div>
-                            <div className='side-props-dt'>
-                                <div>Upload By</div>
-                                <div>{data.uploaded_by}</div>
-                            </div>
-                            <div className='side-props-dt'>
-                                <div>Download Size</div>
-                                <div>{data.download_size}</div>
-                            </div>
-                            <div className='side-props-dt'>
-                                <div>Data Type</div>
-                                <div>{data.data_type}</div>
+                                {
+                                    0: <Description data={data} />,
+                                    1: <Metadata />,
+                                    2: <Versions />,
+                                    3: <Visualization />
+                                }[this.state.activeTab]
+                            }
+                        </div>
+                        <div style={{ flex: 1 }}>
+                            <div className="m-5 p-4" style={{ backgroundColor: '#dddddd', borderRadius: '20px' }}>
+                                <div style={{ fontSize: '30px' }}>Properties</div>
+                                <div className='side-props-dt'>
+                                    <div>Upload Date</div>
+                                    <div>{data.upload_date}</div>
+                                </div>
+                                <div className='side-props-dt'>
+                                    <div>Upload By</div>
+                                    <div>{data.uploaded_by}</div>
+                                </div>
+                                <div className='side-props-dt'>
+                                    <div>Download Size</div>
+                                    <div>{data.download_size}</div>
+                                </div>
+                                <div className='side-props-dt'>
+                                    <div>Data Type</div>
+                                    <div>{data.data_type}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
