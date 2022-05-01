@@ -27,17 +27,28 @@ export default class UsersList extends Component {
         },
         activeTab: 0,
         showSubscriptionModal: false,
+        subscriptionData: {
+            id: {
+                id: "",
+                startDate: "",
+                endDate: "",
+                approvalStatus: "",
+            },
+        },
     }
 
     componentDidMount() {
-        let prevAuthDetails = sessionStorage.getItem("userdata_listing")
-        if (prevAuthDetails === null) {
-            window.history.pushState({}, '', `/auth`)
-            window.location.reload()
-        }
-        else {
+        // let prevAuthDetails = sessionStorage.getItem("userdata_listing")
+        // if (prevAuthDetails === null) {
+        //     window.history.pushState({}, '', `/auth`)
+        //     window.location.reload()
+        // }
+        // else 
+        {
             this.setState({ loading: false })
         }
+
+        this.setState({ subscriptionData: JSON.parse(sessionStorage.getItem("subscriptionData")) })
     }
 
     changeTab = (newTab) => {
@@ -122,11 +133,26 @@ export default class UsersList extends Component {
                         </div>
                         <div className='row'>
                             <div id="subsciption-button" className='mx-2'>
-                                <button type="button" onClick={this.toggleSubsciptionModal} className='details-tab active btnx'>{data.subscribed ? "Subscibed" : "Subscibe"}</button>
+                                {
+                                    this.state.subscriptionData[this.state.dataset_slug] != undefined
+                                    &&
+                                    <button type="button" onClick={this.toggleSubsciptionModal} className='details-tab active btnx'>Subscription {this.state.subscriptionData[this.state.dataset_slug].approvalStatus}</button>
+                                }
+                                {
+                                    this.state.subscriptionData[this.state.dataset_slug] == undefined
+                                    &&
+                                    <button type="button" onClick={this.toggleSubsciptionModal} className='details-tab active btnx'>Subscibe</button>
+                                }
                             </div>
-                            <div id="download-button" className='mx-2'>
-                                <button type="button" className='details-tab active btnx'>Download Now</button>
-                            </div>
+                            {
+                                this.state.subscriptionData[this.state.dataset_slug] != undefined
+                                &&
+                                this.state.subscriptionData[this.state.dataset_slug].approvalStatus === "Approved"
+                                &&
+                                <div id="download-button" className='mx-2'>
+                                    <button type="button" className='details-tab active btnx'>Download Now</button>
+                                </div>
+                            }
                         </div>
                     </div>
                     <div className='d-flex row'>
@@ -134,8 +160,8 @@ export default class UsersList extends Component {
                             <div id='details-tabs' className='row'>
                                 <button onClick={() => this.changeTab(0)} className={`details-tab ${this.state.activeTab === 0 ? 'active' : ''}`}>Desciption</button>
                                 <button onClick={() => this.changeTab(1)} className={`details-tab ${this.state.activeTab === 1 ? 'active' : ''}`}>Metadata</button>
-                                <button onClick={() => this.changeTab(2)} className={`details-tab ${this.state.activeTab === 2 ? 'active' : ''}`}>Versions</button>
-                                <button onClick={() => this.changeTab(3)} className={`details-tab ${this.state.activeTab === 3 ? 'active' : ''}`}>Visualizations</button>
+                                {this.state.subscriptionData[this.state.dataset_slug] != undefined && this.state.subscriptionData[this.state.dataset_slug].approvalStatus === "Approved" && <button onClick={() => this.changeTab(2)} className={`details-tab ${this.state.activeTab === 2 ? 'active' : ''}`}>Versions</button>}
+                                {this.state.subscriptionData[this.state.dataset_slug] != undefined && this.state.subscriptionData[this.state.dataset_slug].approvalStatus === "Approved" && <button onClick={() => this.changeTab(3)} className={`details-tab ${this.state.activeTab === 3 ? 'active' : ''}`}>Visualizations</button>}
                             </div>
                             {
                                 {
