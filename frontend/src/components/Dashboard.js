@@ -161,6 +161,9 @@ export default class ProfilePage extends Component {
                     </div>
                     <div className="card-body">
                       <p className="card-text">{this.state.datasets[datasetId].description}</p>
+                      <hr/>
+                      <p> Uploaded on:  {this.state.datasets[datasetId].uploadDate}
+                      </p>
                     </div>
                   </div>
                 </div>
